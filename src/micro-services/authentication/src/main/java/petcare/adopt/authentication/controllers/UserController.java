@@ -19,7 +19,7 @@ public class UserController extends GenericController<User> {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/exists")
+    @GetMapping("/authenticate")
     public ResponseEntity<User> authenticate(@RequestParam String username, @RequestParam String password) {
         Optional<User> optionalUser = userService.authenticate(username, password);
 
@@ -28,6 +28,13 @@ public class UserController extends GenericController<User> {
         }
 
         return ResponseEntity.ok(optionalUser.get());
+    }
+
+    @GetMapping("/exists")
+    public ResponseEntity<Boolean> findByUsername(@RequestParam Long userId) {
+        boolean exists = userService.exists(userId);
+
+        return ResponseEntity.ok(exists);
     }
 
 }

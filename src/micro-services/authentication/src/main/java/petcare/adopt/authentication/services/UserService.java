@@ -9,4 +9,6 @@ public interface UserService extends GenericService<User> {
 
     public Optional<User> authenticate(String username, String password);
 
+    boolean exists(Long userId);
+
 }

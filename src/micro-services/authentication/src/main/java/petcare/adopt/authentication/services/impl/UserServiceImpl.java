@@ -21,4 +21,15 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long, UserReposito
         return optionalUser;
     }
 
+    @Override
+    public boolean exists(Long userId) {
+        Optional<User> optionalUser = repository.findById(userId);
+
+        if (optionalUser.isPresent()) {
+            return true;
+        }
+
+        return false;
+    }
+
 }
